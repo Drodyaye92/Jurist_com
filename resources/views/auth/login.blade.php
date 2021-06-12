@@ -58,7 +58,7 @@
                                     Connexion
                                 </button>
                                 <a href=" {{asset('register') }}">
-                                        Avez vous deja un compte?Inscriver vous!
+                                        Avez vous un compte?Inscrivez vous!
                                 </a>
 
                                 @if (Route::has('password.request'))

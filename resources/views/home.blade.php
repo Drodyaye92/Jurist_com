@@ -1,7 +1,7 @@
 @extends('layouts.entete')
 
 @section('content')
-<div class="container-fluid">
+<div >
     <div class="row justify-content-center">
     <div class="col-lg-4 border shadow">
         <h2 class="border bg-dark text-white"> Missions et objectif avocat</h2>
@@ -135,7 +135,7 @@
      </section>
 
 
-                //
+
 
    </div>
   </div>

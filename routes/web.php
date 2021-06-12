@@ -22,16 +22,17 @@ Use App\User;
 
 Route::get('/', function () {
    return view('welcome');
-});
+})->name('welcome');
 
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');//vue apres  authentification
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 Route::prefix('admin')->group(function(){
-    //Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');//page d formulaire
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');//page d formulaire
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');//page de connection
-    Route::get('/', 'AdminController@index')->name('admin.dashboared');
+   // Route::get('/', 'AdminController@index')->name('admin.dashboared');
+    Route::get('/', 'AdminController@index');
    //dash avec user
     Route::get('/', 'Auth\AdminLoginController@dashe')->name('dash');
     Route::get('/', 'Auth\AdminLoginController@dash')->name('dash');
@@ -50,28 +51,6 @@ Route::prefix('admin')->group(function(){
 //pour inscription
  Route::post('/register','InscriptionController@inscription');
 
-
-
-
-
-
-
-
-
-
-
-
-
-//  Route::get('/', function () {
-
-//     if($user = Auth::user())
-//     {
-//         return redirect()->route('chatter');
-//     }
-
-//     return view('welcome');
-// });
-// //Auth::Routes();
 
 Route::get('/chatter', 'ChatController@index')
                             ->name('chatter')

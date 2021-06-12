@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.js">
-    <link rel="stylesheet" href="assets/fontawesome-free-5.15.1-web"
+    <link rel="stylesheet" href="assets/fontawesome-free-5.15.1-web">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <title>page de presentation</title>
 </head>
@@ -70,11 +70,12 @@
 
 <div class=" division">
 <nav class="navbar">
-      <a class="navbar-brand" href="">Actualite Juridique</a>
-      <a class="navbar-brand" href="">Nos services</a>
-      <a class="navbar-brand" href="#">Forum</a>
-      <a class="navbar-brand" href="#">Contact</a>
-      <a class="navbar-brand" href="">Creer un contact</a>
+    <a class="navbar-brand" href="{{asset('/')}}">Actualite Juridique</a>
+    <a class="navbar-brand" href="{{asset('login')}}">Nos services</a>
+    <a class="navbar-brand" href="{{asset('home')}}">Notre Equipe</a>
+    <a class="navbar-brand" href="{{asset('forum')}}">Forum</a>
+    <a class="navbar-brand" href="{{asset('contact')}}">Contact</a>
+
 </nav>
 </div>
     </header>

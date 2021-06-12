@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -17,118 +11,84 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/assets/css/chatter.css') }}" rel="stylesheet">
+   <link href="{{ asset('assets/assets/css/chatter.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+   <link rel="stylesheet" href="assets/css/reset.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.js">
+    <link rel="stylesheet" href="assets/fontawesome-free-5.15.1-web">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>page de presentation</title>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar-fixed navbar-expand-md navbar-light  shadow-sm">
+    <header>
+    <nav class="navbar-fixed">
+        <div class="container">
+        <div class="row">
+    <div class="col-2 my-2"> Touver mon juriste.com</div>
+    <div class="offset-7"></div>
+    <div class="col-3">
 
-                <a class="navbar-brand" href="{{ url('/') }}">
-                     Touver mon juriste.com
+            <!-- Authentication Links -->
+            @guest
+                    <a class="" href="{{ route('login') }}">Connexion</a>
+                @if (Route::has('register'))
+                    <a class="" href="{{ route('register') }}">Creer mon compte</a>
+                @endif
+            @else
 
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <a id="navbarDropdown" class="" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
 
-                    </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                        </svg>
-                                 Creer mon compte </a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+            @endguest
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-
-        </nav>
-  <div class="container-fluid">
+    </div>
+    </div>
+    </nav>
+        <div class="container">
             <div class="row">
-                <div class="col-2 my-2"> <img src="assets/images/balance.jpg" width="150px" height="80px" class="" alt=""> </div>
+                <div class="col-2"> <img src="{{asset('assets/images/balance.jpg')}}" width="150px" height="90px" class="" alt=""> </div>
                 <div class="col-8 "></div>
                 <div class="col-2 my-5"><h5 class="fin">Numero vert:2311</h5></div>
             </div>
- </div>
+        </div>
 
-
-
-
-          <nav  style="background-color: #d4e1eb;">
-            <!-- Navbar content -->
-
-                {{-- <a class="navbar-brand" href="#">Actualite Juridique</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button> --}}
-
-
-                  <ul class=" container-fluid navbar division mr-auto">
-                    {{-- <li class="nav-item active"> --}}
-                      <a class="nav-link" href="#">Accueil <span class="sr-only">Actualite Juridique</span></a>
-                    {{-- </li>
-                    <li class="nav-item"> --}}
-                        <a class="nav-link" href="#">Equipe</a>
-                      {{-- </li>
-                    <li class="nav-item"> --}}
-                      <a class="nav-link" href="{{asset('chatter')}}">Services</a>
-                    {{-- </li>
-                    <li class="nav-item dropdown"> --}}
-                      <a class="nav-link dropdown-toggle" href="#"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        A propos
-                      </a>
-
-                    {{-- </li>
-                    <li class="nav-item"> --}}
-                      <a class="nav-link disabled" href="#">Forum</a>
-                    {{-- </li> --}}
-                  </ul>
-
-
-          </nav>
-
-    </div>
-
-
-
-
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+<div class=" division">
+<nav class="navbar">
+      <a class="navbar-brand" href="{{asset('/')}}">Actualite Juridique</a>
+      <a class="navbar-brand" href="{{asset('chatter')}}">Nos services</a>
+      <a class="navbar-brand" href="{{asset('home')}}">Notre Equipe</a>
+      <a class="navbar-brand" href="{{asset('forum')}}">Forum</a>
+      <a class="navbar-brand" href="{{asset('contact')}}">Contact</a>
+</nav>
+</div>
+    </header>
+    <main class="py-4">
+        @yield('content')
+    </main>
+    <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+   <script src='{{ asset('js/chatter.js') }}'></script>
 </body>
 </html>
+

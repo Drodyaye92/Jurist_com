@@ -3,12 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-
-
-
-
-
-
                         <div class="col-4 my-3">
                             <div class="col-12 my-3">
                                 <form action="" method="get">
@@ -33,14 +27,14 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active" aria-current="page">Liste des clients ayant un compte</li>
                     </ol>
-                </nav>
+                  </nav>
                 <div class="container-fluid">
 
                    <table class="table table-striped">
-                  <h5>Au total,il ya comptes existants</h5>
+                 
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col"></th>
               <th scope="col">Nom</th>
               <th scope="col">Email</th>
               <th scope="col">Matricule</th>

@@ -26,6 +26,8 @@ class AdminController extends Controller
     {
         return view('admin');
     }
+
+    
     public function dasb(){
         $user = User::all();
         return view('dasb', ['user'=>$user]);
