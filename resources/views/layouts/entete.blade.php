@@ -17,8 +17,8 @@
      <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/assets/css/chatter.css') }}" rel="stylesheet">
-   <link href="{{ asset('assets/assets/css/chatter.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+   <link href="{{ asset('assets/css/chatter.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
    <link rel="stylesheet" href="assets/css/reset.min.css">
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">

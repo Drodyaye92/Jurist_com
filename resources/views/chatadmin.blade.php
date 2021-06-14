@@ -3,14 +3,19 @@
 @section('content')
 
 <div class="chat">
-    <input type='hidden' value='{{ $user_id }}' name='user_id' />
+    <input type='hidden' value='' name='user_id' />
     <div id="frame">
         <div id="sidepanel">
             <div id="search" style='padding-top:5px;padding-bottom:5px;'>
           <p style='text-align:center;font-weight:bold;font-size=40px;'>User List</p>
             </div>
-            <div id="contacts">
-             
+            <div >
+        <ul>
+            @foreach ($users as $user)
+            <a href="{{route('chatadmin.show',$user->id)}}"><li><h3>{{$user->name}}</h3></li></a>
+            @endforeach
+
+        </ul>
             </div>
             <div id="bottom-bar">
           <button id="addcontact">
@@ -22,34 +27,29 @@
         </div>
         <div class="content">
             <div class="contact-profile">
-          <img src="storage/avatars/{{ Auth::user()->avatar }}" alt="" />
-          <p>{{ Auth::user()->name  }}</p>
+          <img src="storage/avatars/" alt="" />
+          <p></p>
                 <div class="social-media">
                     <a href="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="messages">
-                <ul>
-              @foreach ($messages as $message )
-                @if( $message->user->id == $user_id)
-                  <li class="sent">
-                @else
-                  <li class="replies">
-                @endif
-                  <img src="storage/avatars/{{ $message->user->avatar }}" alt="" />
-                  <p>{{ $message->message }}</p>
-                </li>
+              @foreach ($messages as $message)
+              <p>{{$message->message}}</p>
 
               @endforeach
-
-                </ul>
             </div>
             <div class="message-input">
-             <form action="/send" method="post">
+             <form action="{{route('chatadmin.store')}}" method="post">
                 @csrf
                 <div class="wrap">
-                <input type="hidden" value="{{auth()->user()->id}}" name="user_id"/>
-                <input type="text" name="message" placeholder="Write your message..." />
+                    @foreach ($users as $user)
+                <input type="hidden" value="{{$user->id}}" name="user_id"/>
+                @endforeach
+                @foreach ($messages as $message)
+                <input type="hidden" value="{{$message->id}}" name="message_id"/>
+                @endforeach
+                <input type="text" name="answers" placeholder="Write your message..." />
                 <button class="submit" id='btn_send_message'>
                 <i class="fa fa-paper-plane" aria-hidden="true"></i>valider
                 </button>

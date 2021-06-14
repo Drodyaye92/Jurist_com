@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\http\JsonResponse;
-use App\Providers;
-use App\MessageSent;
-use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Answers;
 use App\Message;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\App\admin;
 
-class MessageController extends Controller
+class AdminchatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,26 +18,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
-    }
-    public function send(Request $request)
-    {
-$request->validate([
-    'message'=>'required|string',
-    'user_id'=>'required',
-]);
-
-    $message= new Message();
-    $message->message=$request->input('message');
-    $message->user_id=auth()->user()->id;
-    $message->save();
-    return "ok";
-    //return view('chatter' compact($varname 'user',$_'user') );
-
-
-
-
-
+        $users=User::all();
+        $messages= Message::all();
+        // $articles = App\admin ::find()->posts;
+        return view('chatadmin',compact('users','messages'));
     }
 
 
@@ -61,6 +44,19 @@ $request->validate([
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'answers'=>'required|string',
+            'user_id'=>'required',
+            'message_id'=>'required',
+        ]);
+
+            $answers= new Answers();
+            $answers->answers=$request->input('answers');
+            $answers->user_id=$request->input('user_id');
+            $answers->message_id=$request->input('message_id');
+            $answers->save();
+
+            return "ok";
     }
 
     /**
@@ -69,9 +65,14 @@ $request->validate([
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($users)
     {
-        //
+        //$users=User::all("message")->where('id',$users);
+        $allData = [];
+
+        $messages = Message::all()->where("user_id", $users);
+        $users = User::all();
+        return view('chatadmin',["messages" => $messages, "users" => $users]);
     }
 
     /**

@@ -38,6 +38,29 @@ return view('chatter',[
         ]);
 
     }
+    public function show( User $user)
+    {
+        $messages = Message::with('user')
+        ->orderBy('created_at','desc')
+        ->take(5)
+        ->get();
+
+$messages = $messages->reverse();
+
+$user_id = Auth::id();
+
+$logged_in_users = User::where('last_activity_at','>=',time()-(1*60*60))->get();
+
+return view('chatter',[
+            'messages'=> $messages,
+            'user_id' => $user_id,
+            'logged_in_users' => $logged_in_users
+        ]);
+
+    }
+
+
+
 
 
     /**
@@ -67,10 +90,7 @@ return view('chatter',[
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+   
 
     /**
      * Show the form for editing the specified resource.
